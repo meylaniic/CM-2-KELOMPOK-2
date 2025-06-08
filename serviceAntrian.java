@@ -3,7 +3,7 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class serviceAntrian {
-     static Scanner input = new Scanner(System.in);
+    static Scanner input = new Scanner(System.in);
     static doubleLinkedListPasien antrian = new doubleLinkedListPasien();
     static Queue<transaksiLayanan> riwayatTransaksi = new LinkedList<>();
 
@@ -42,11 +42,23 @@ public class serviceAntrian {
         String namaDokter = input.nextLine();
         System.out.print("Masukkan Durasi Layanan (jam): ");
         int durasi = input.nextInt();
-        input.nextLine(); // Buang newline
+        input.nextLine(); 
 
         dokter dokter = new dokter(id, namaDokter);
         transaksiLayanan transaksi = new transaksiLayanan(pasien, dokter, durasi);
         riwayatTransaksi.add(transaksi);
         System.out.println(">> Pasien telah dilayani, transaksi berhasil dicatat.");
     }
+
+    static void cekSisaAntrian() {
+        System.out.println(">> Sisa pasien dalam antrian: " + antrian.getSize());
+    }
+
+    static void lihatRiwayatTransaksi() {
+        System.out.println("-- Riwayat Transaksi --");
+        for (transaksiLayanan t : riwayatTransaksi) {
+            System.out.println(t.pasien.nama + " (" + t.durasiLayanan + " jam): Rp " + t.biaya);
+        }
+    }
+
 }
